@@ -120,7 +120,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => showSlide(activeSlide - 1)}
-            className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/65 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-5"
+            className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/65 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-5"
             aria-label="Previous health center photo"
           >
             <ChevronLeft className="h-6 w-6" aria-hidden="true" />
@@ -128,33 +128,35 @@ export default function App() {
           <button
             type="button"
             onClick={() => showSlide(activeSlide + 1)}
-            className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/65 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-5"
+            className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/65 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-5"
             aria-label="Next health center photo"
           >
             <ChevronRight className="h-6 w-6" aria-hidden="true" />
           </button>
 
-          <div className="absolute bottom-2 right-3 flex items-center gap-2 sm:bottom-4 sm:right-5">
+          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-black/40 p-1 backdrop-blur-xs sm:right-5 sm:top-5 sm:gap-2">
             <button
               type="button"
               onClick={() => setIsCarouselPaused((paused) => !paused)}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/65 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               aria-label={isCarouselPaused ? 'Play slideshow' : 'Pause slideshow'}
             >
               {isCarouselPaused
                 ? <Play className="h-4 w-4" aria-hidden="true" />
                 : <Pause className="h-4 w-4" aria-hidden="true" />}
             </button>
-            <div className="flex items-center gap-1.5" aria-label="Choose a health center photo">
+            <div className="flex items-center gap-0.5" aria-label="Choose a health center photo">
               {centerSlides.map((slide, index) => (
                 <button
                   key={slide.image}
                   type="button"
                   onClick={() => showSlide(index)}
-                  className={`h-2.5 rounded-full transition-all ${activeSlide === index ? 'w-6 bg-white' : 'w-2.5 bg-white/55 hover:bg-white/85'}`}
+                  className="flex h-11 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   aria-label={`Show ${slide.title}`}
                   aria-current={activeSlide === index ? 'true' : undefined}
-                />
+                >
+                  <span className={`h-2.5 rounded-full transition-all ${activeSlide === index ? 'w-6 bg-white' : 'w-2.5 bg-white/55 hover:bg-white/85'}`} />
+                </button>
               ))}
             </div>
           </div>
