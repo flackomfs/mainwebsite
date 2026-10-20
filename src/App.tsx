@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { HealthCenterGrid } from './components/HealthCenterGrid';
-import { ClinicInfoModal } from './components/ClinicInfoModal';
 import { INITIAL_HEALTH_CENTERS } from './data/healthCenters';
 import { HealthCenter } from './types';
 import { getManilaDate, formatManilaTime } from './utils/statusCalculator';
@@ -18,7 +17,6 @@ const centerSlides = [
 export default function App() {
   const [healthCenters] = useState<HealthCenter[]>(INITIAL_HEALTH_CENTERS);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCenterForInfo, setSelectedCenterForInfo] = useState<HealthCenter | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -27,7 +25,7 @@ export default function App() {
     if (isCarouselPaused) return;
     const timer = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % centerSlides.length);
-    }, 6000);
+    }, 5000);
     return () => window.clearInterval(timer);
   }, [isCarouselPaused]);
 
@@ -197,7 +195,6 @@ export default function App() {
             {/* Health Center Cards */}
             <HealthCenterGrid
               healthCenters={filteredCenters}
-              onOpenInfoModal={(center) => setSelectedCenterForInfo(center)}
             />
           </div>
         </section>
@@ -216,12 +213,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* Quick Clinic Info Modal */}
-      <ClinicInfoModal
-        center={selectedCenterForInfo}
-        onClose={() => setSelectedCenterForInfo(null)}
-      />
     </div>
   );
 }
