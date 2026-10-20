@@ -6,7 +6,6 @@ import { INITIAL_HEALTH_CENTERS } from './data/healthCenters';
 import { HealthCenter } from './types';
 import { getManilaDate, formatManilaTime } from './utils/statusCalculator';
 import { Search, Building2 } from 'lucide-react';
-import paterosLogo from './assets/images/pateros_logo.jpg';
 
 export default function App() {
   const [healthCenters] = useState<HealthCenter[]>(INITIAL_HEALTH_CENTERS);

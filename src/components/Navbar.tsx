@@ -1,6 +1,5 @@
 import React from 'react';
 import { Clock } from 'lucide-react';
-import paterosLogo from '../assets/images/pateros_logo.jpg';
 
 interface NavbarProps {
   timeString: string;
@@ -13,7 +12,7 @@ export const Navbar: React.FC<NavbarProps> = ({ timeString }) => {
         {/* Brand */}
         <div className="flex items-center gap-3">
           <img
-            src={paterosLogo}
+            src="/pateros_logo.jpg"
             alt="Municipality of Pateros Official Logo"
             className="h-10 w-10 rounded-full object-contain border border-slate-200 shadow-2xs shrink-0"
           />
