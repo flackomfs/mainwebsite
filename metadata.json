@@ -1,0 +1,6 @@
+{
+  "name": "Pateros HealthLink Portal",
+  "description": "Central municipal portal directing residents to the 5 Barangay Health Centers in Pateros with real-time status indicators, service information, and direct scheduling links.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
