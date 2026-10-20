@@ -208,8 +208,6 @@ export default function App() {
           </p>
           <div className="flex items-center gap-4">
             <span>5 Barangay Health Centers Directory</span>
-            <span>·</span>
-            <span>Clinic Hours: 8:00 AM – 5:00 PM (PHT)</span>
           </div>
         </div>
       </footer>
