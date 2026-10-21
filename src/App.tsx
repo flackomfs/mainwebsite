@@ -177,7 +177,7 @@ export default function App() {
                   id="health-centers-title"
                   className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl"
                 >
-                  Find a health center
+                  Find Near Health Center
                 </h2>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
                   Choose a center below or search by its name or barangay.
