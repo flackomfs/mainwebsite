@@ -4,7 +4,7 @@ import { HealthCenterGrid } from './components/HealthCenterGrid';
 import { INITIAL_HEALTH_CENTERS } from './data/healthCenters';
 import { HealthCenter } from './types';
 import { getManilaDate, formatManilaTime } from './utils/statusCalculator';
-import { Search, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight, Pause, Play, X } from 'lucide-react';
 
 const centerSlides = [
   { image: '/DELFIN.png', title: 'Delfin Salonga Health Center' },
@@ -51,8 +51,7 @@ export default function App() {
     return healthCenters.filter(
       (c) =>
         c.name.toLowerCase().includes(q) ||
-        c.barangay.toLowerCase().includes(q) ||
-        c.address.toLowerCase().includes(q)
+          c.barangay.toLowerCase().includes(q)
     );
   }, [healthCenters, searchQuery]);
 
@@ -162,42 +161,77 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5 Health Centers Directory Section */}
-        <section className="py-10">
+        {/* Health Center Directory */}
+        <section
+          id="health-centers"
+          aria-labelledby="health-centers-title"
+          className="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 to-slate-50 py-12 sm:py-16"
+        >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center justify-between gap-4 text-xs text-slate-500 sm:justify-start">
-                <span className="font-semibold text-slate-700">
-                  All 5 Health Centers in Pateros
-                </span>
-                <span>Showing {filteredCenters.length} centers</span>
+            <div className="mb-7 flex flex-col gap-5 sm:mb-9 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-800">
+                  Pateros Health Directory
+                </p>
+                <h2
+                  id="health-centers-title"
+                  className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl"
+                >
+                  Find a health center
+                </h2>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
+                  Choose a center below or search by its name or barangay.
+                </p>
               </div>
-              <div className="relative w-full sm:w-80">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden="true" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Search by barangay or center..."
-                  aria-label="Search by barangay or center"
-                  className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-12 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-hidden focus:ring-2 focus:ring-emerald-600/20"
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[11px] font-semibold text-slate-500 hover:text-slate-900"
-                  >
-                    Clear
-                  </button>
-                )}
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:min-w-80 sm:items-end">
+                <span
+                  className="self-start rounded-full border border-emerald-200 bg-white/80 px-3 py-1 text-xs font-semibold text-emerald-900 sm:self-end"
+                  aria-live="polite"
+                >
+                  {filteredCenters.length} of {healthCenters.length} centers
+                </span>
+                <div className="relative w-full">
+                  <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden="true" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    placeholder="Search centers or barangays"
+                    aria-label="Search health centers by name or barangay"
+                    className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-12 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-emerald-600 focus:outline-hidden focus:ring-2 focus:ring-emerald-600/20"
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery('')}
+                      className="absolute right-1.5 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-emerald-700"
+                      aria-label="Clear search"
+                    >
+                      <X className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Health Center Cards */}
-            <HealthCenterGrid
-              healthCenters={filteredCenters}
-            />
+            {filteredCenters.length > 0 ? (
+              <HealthCenterGrid healthCenters={filteredCenters} />
+            ) : (
+              <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 px-5 py-12 text-center">
+                <Search className="mx-auto h-8 w-8 text-slate-400" aria-hidden="true" />
+                <h3 className="mt-3 text-base font-bold text-slate-900">No centers found</h3>
+                <p className="mt-1 text-sm text-slate-600">
+                  Try another center or barangay name.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="mt-4 min-h-11 rounded-lg bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
+                >
+                  Show all centers
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </main>
