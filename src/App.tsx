@@ -236,17 +236,6 @@ export default function App() {
         </section>
       </main>
 
-      {/* Clean Minimal Footer */}
-      <footer className="border-t border-slate-200 bg-white py-6 text-xs text-slate-500">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 sm:flex-row sm:px-6 lg:px-8">
-          <p>
-            &copy; {new Date().getFullYear()} Pateros Health Portal · Bayan ng Pateros
-          </p>
-          <div className="flex items-center gap-4">
-            <span>5 Barangay Health Centers Directory</span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
