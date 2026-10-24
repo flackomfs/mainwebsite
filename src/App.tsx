@@ -126,7 +126,18 @@ export default function App() {
                     Municipality of Pateros
                   </p>
                   <h1 className="mt-1 text-xl font-bold sm:text-3xl lg:text-4xl">
-                    {slide.title}
+                    {slide.url ? (
+                      <a
+                        href={slide.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-sm hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                      >
+                        {slide.title}
+                      </a>
+                    ) : (
+                      slide.title
+                    )}
                   </h1>
                 </div>
               </div>

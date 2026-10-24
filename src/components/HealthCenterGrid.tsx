@@ -39,7 +39,18 @@ export const HealthCenterGrid: React.FC<HealthCenterGridProps> = ({
             </span>
           )}
           <h3 className="text-base font-bold leading-snug text-slate-900 sm:text-lg">
-            {center.name}
+            {center.id === 'mr-flores' ? (
+              <a
+                href={center.urls.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm hover:text-emerald-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
+              >
+                {center.name}
+              </a>
+            ) : (
+              center.name
+            )}
           </h3>
         </article>
       ))}
