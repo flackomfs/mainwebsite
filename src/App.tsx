@@ -10,7 +10,7 @@ const centerSlides = [
   { image: '/DELFIN.png', title: 'Delfin Salonga Health Center' },
   { image: '/MASIKAP.png', title: 'Masikap Health Center' },
   { image: '/Mayor%20Juan.png', title: 'Mayor Juan Sanchez Health Center' },
-  { image: '/MR%20FLORES.png', title: 'M.R. Flores Health Center', url: MR_FLORES_HEALTH_CENTER_URL },
+  { image: '/MR%20FLORES.png', title: 'M.R Flores Health Center', url: MR_FLORES_HEALTH_CENTER_URL },
   { image: '/QUINTIN.png', title: 'Quintin De Borja Health Center' },
 ];
 
