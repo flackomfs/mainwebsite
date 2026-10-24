@@ -1,5 +1,7 @@
 import { HealthCenter, ServiceItem } from '../types';
 
+export const MR_FLORES_HEALTH_CENTER_URL = 'https://mrfloreshealthcenter.vercel.app/';
+
 export const PATEROS_SERVICES: ServiceItem[] = [
   {
     id: 'general-consultation',
@@ -179,7 +181,7 @@ export const INITIAL_HEALTH_CENTERS: HealthCenter[] = [
     },
     services: PATEROS_SERVICES.filter(s => ['general-consultation', 'maternal-prenatal', 'child-immunization', 'senior-wellness', 'tb-dots'].includes(s.id)),
     urls: {
-      websiteUrl: 'https://pateros-mrflores-health.web.app',
+      websiteUrl: MR_FLORES_HEALTH_CENTER_URL,
       schedulingUrl: 'https://pateros-mrflores-health.web.app/schedule',
       infoUrl: 'https://pateros-mrflores-health.web.app/info',
     },

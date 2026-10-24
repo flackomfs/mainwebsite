@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { HealthCenterGrid } from './components/HealthCenterGrid';
-import { INITIAL_HEALTH_CENTERS } from './data/healthCenters';
+import { INITIAL_HEALTH_CENTERS, MR_FLORES_HEALTH_CENTER_URL } from './data/healthCenters';
 import { HealthCenter } from './types';
 import { getManilaDate, formatManilaTime } from './utils/statusCalculator';
 import { Search, ChevronLeft, ChevronRight, Pause, Play, X } from 'lucide-react';
@@ -10,7 +10,7 @@ const centerSlides = [
   { image: '/DELFIN.png', title: 'Delfin Salonga Health Center' },
   { image: '/MASIKAP.png', title: 'Masikap Health Center' },
   { image: '/Mayor%20Juan.png', title: 'Mayor Juan Sanchez Health Center' },
-  { image: '/MR%20FLORES.png', title: 'M.R. Flores Health Center' },
+  { image: '/MR%20FLORES.png', title: 'M.R. Flores Health Center', url: MR_FLORES_HEALTH_CENTER_URL },
   { image: '/QUINTIN.png', title: 'Quintin De Borja Health Center' },
 ];
 
@@ -97,12 +97,29 @@ export default function App() {
           >
             {centerSlides.map((slide, index) => (
               <div className="relative h-full w-full shrink-0" key={slide.image}>
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className="h-full w-full object-cover object-center"
-                  fetchPriority={index === 0 ? 'high' : 'auto'}
-                />
+                {slide.url ? (
+                  <a
+                    href={slide.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${slide.title} website`}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="h-full w-full object-cover object-center"
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="h-full w-full object-cover object-center"
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
+                  />
+                )}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/10" />
                 <div className="absolute bottom-5 left-5 right-5 text-white sm:bottom-7 sm:left-8 lg:bottom-9 lg:left-12">
                   <p className="text-xs font-semibold uppercase text-white/80 sm:text-sm">

@@ -16,12 +16,28 @@ export const HealthCenterGrid: React.FC<HealthCenterGridProps> = ({
           key={center.id}
           className="relative flex min-h-28 items-center gap-4 overflow-hidden rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-emerald-50/50 p-5 shadow-sm sm:min-h-32 sm:p-6"
         >
-          <span
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 sm:h-12 sm:w-12"
-            aria-hidden="true"
-          >
-            <MapPin className="h-5 w-5" />
-          </span>
+          {center.id === 'mr-flores' ? (
+            <a
+              href={center.urls.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${center.name} website`}
+              className="h-11 w-11 shrink-0 overflow-hidden rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 sm:h-12 sm:w-12"
+            >
+              <img
+                src="/MR%20FLORES.png"
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            </a>
+          ) : (
+            <span
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 sm:h-12 sm:w-12"
+              aria-hidden="true"
+            >
+              <MapPin className="h-5 w-5" />
+            </span>
+          )}
           <h3 className="text-base font-bold leading-snug text-slate-900 sm:text-lg">
             {center.name}
           </h3>
